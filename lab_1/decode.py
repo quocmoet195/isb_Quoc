@@ -1,12 +1,11 @@
 import json
 import os
-import read_file
-import write_file
+from read_and_write_file import read_from_file, write_to_file
 
 
 def get_dict(input_path: str, output_path: str) -> None:
     try:
-        data = read_file.read_from_file(input_path)
+        data = read_from_file(input_path)
         my_dict = {}
         freq_dict={}
         for char in data:
@@ -25,13 +24,13 @@ def get_dict(input_path: str, output_path: str) -> None:
 
 def decode_text(original_text: str, key_path: str, decode_text: str) -> None:
     try:
-        data = read_file.read_from_file(original_text)
+        data = read_from_file(original_text)
         with open(key_path, "r", encoding="utf-8") as key_file:
             key_dict = json.load(key_file)
         for key, value in key_dict.items():
             if key in data:
                 data = data.replace(key, value)
-        write_file.write_to_file(decode_text, data)
+        write_to_file(decode_text, data)
     except Exception:
         raise Exception("Error when decode text!")
 

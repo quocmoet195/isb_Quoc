@@ -1,15 +1,14 @@
 import os
-import read_file
-import write_file
+from read_and_write_file import read_from_file, write_to_file
 
 abs_path = os.path.abspath("")
 alphabet_path=os.path.join(abs_path,"part_1","alphabet.txt")
-ALPHABET=read_file.read_from_file(alphabet_path)
+ALPHABET=read_from_file(alphabet_path)
 
 def encryption_text(input_path: str, output_path: str, step_path: str) -> None:
     try:
-        step=int(read_file.read_from_file(step_path))
-        data = read_file.read_from_file(input_path)
+        step=int(read_from_file(step_path))
+        data = read_from_file(input_path)
         data=data.lower()
         encrypted_data = ""
         for char in data:
@@ -18,7 +17,7 @@ def encryption_text(input_path: str, output_path: str, step_path: str) -> None:
                 encrypted_data += ALPHABET[index]
             else:
                 encrypted_data += char
-        write_file.write_to_file(output_path, encrypted_data)
+        write_to_file(output_path, encrypted_data)
     except Exception:
         raise Exception("Error when encode text!\n")  
 
