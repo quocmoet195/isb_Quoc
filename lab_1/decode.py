@@ -2,7 +2,6 @@ import json
 import os
 from read_and_write_file import read_from_file, write_to_file
 
-
 def get_dict(input_path: str, output_path: str) -> None:
     """
     Вывести информацию о частоте каждого символа.
@@ -29,6 +28,7 @@ def get_dict(input_path: str, output_path: str) -> None:
             freq_file.write(json.dumps(sorted_dict,indent=1,ensure_ascii=False))
     except Exception as ex:
         raise Exception(f"Error when creat and save to dictionary!\n Exception:{ex}\n")
+
 
 def decode_text(original_text_path: str, key_path: str, decode_text_path: str) -> None:
     """
@@ -58,6 +58,18 @@ if __name__ == "__main__":
     freq_dict_path=os.path.join(abs_path,"part_2","frep.json")
     key_dict_path=os.path.join(abs_path,"part_2","key.json")
     output_file_path=os.path.join(abs_path,"part_2","decoded_text.txt")
+    path_dict = {
+        "input_file": input_file_path,
+        "freq_dict": freq_dict_path,
+        "key_dict": key_dict_path,
+        "output_file": output_file_path
+    }
+    try:
+        with open('part_2\path.json', 'w') as json_file:
+            json.dump(path_dict, json_file, indent=1)
+    except Exception as ex:
+        raise Exception(f"Error when write path into file!\n Exception:{ex}\n")
+
     try:
         get_dict(input_file_path,freq_dict_path)
         decode_text(input_file_path,key_dict_path,output_file_path)

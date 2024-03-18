@@ -1,0 +1,6 @@
+{
+ "input_file": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_2\\cod1.txt",
+ "freq_dict": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_2\\frep.json",
+ "key_dict": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_2\\key.json",
+ "output_file": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_2\\decoded_text.txt"
+}

@@ -1,9 +1,6 @@
 import os
+import json
 from read_and_write_file import read_from_file, write_to_file
-
-abs_path = os.path.abspath("")
-alphabet_path=os.path.join(abs_path,"part_1","alphabet.txt")
-ALPHABET=read_from_file(alphabet_path)
 
 def encryption_text(input_path: str, output_path: str, step_path: str) -> None:
     """
@@ -36,7 +33,19 @@ if __name__ == "__main__":
     input_path=os.path.join(abs_path,"part_1","original_text.txt")
     output_path=os.path.join(abs_path,"part_1","encode_text.txt")
     step_path=os.path.join(abs_path,"part_1","step.txt")
-
+    alphabet_path=os.path.join(abs_path,"part_1","alphabet.txt")
+    ALPHABET=read_from_file(alphabet_path)
+    path_dict={
+        "input_path":input_path,
+        "output_path":output_path,
+        "step_path":step_path,
+        "alphabet_path":alphabet_path
+    }
+    try:
+        with open('part_1\path.json',"w") as file:
+            json.dump(path_dict,file,indent=1)
+    except Exception as ex:
+        raise Exception(f"Error when write path into file!\n Exception:{ex}\n")
     try:
         encryption_text(input_path, output_path, step_path)
         print("Text successfully encoded")
