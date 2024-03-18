@@ -10,8 +10,8 @@ def read_from_file(path: str) -> str:
         with open(path, "r+", encoding="utf-8") as file:
             data = file.read()
         return data
-    except Exception:
-       raise Exception("Failed to open file or file was not found!\n")
+    except Exception as ex:
+       raise Exception(f"Failed to open file or file was not found!\n Exception:{ex}\n")
 
 def write_to_file(path: str, data: str) -> None:
     """
@@ -25,5 +25,5 @@ def write_to_file(path: str, data: str) -> None:
     try:
         with open(path, "w", encoding="utf-8") as file:
             file.write(data)
-    except Exception:
-        raise Exception("Failed to write data or file was not found!\n")
+    except Exception as ex:
+        raise Exception(f"Failed to write data or file was not found!\n Exception:{ex}\n")
