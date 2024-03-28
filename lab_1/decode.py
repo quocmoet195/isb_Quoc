@@ -1,6 +1,6 @@
 import json
-import os
 from read_and_write_file import read_from_file, write_to_file
+from part_2 import path
 
 def get_dict(input_path: str, output_path: str) -> None:
     """
@@ -53,23 +53,7 @@ def decode_text(original_text_path: str, key_path: str, decode_text_path: str) -
 
 
 if __name__ == "__main__":
-    abs_path = os.path.abspath("")
-    input_file_path=os.path.join(abs_path,"part_2","cod1.txt")
-    freq_dict_path=os.path.join(abs_path,"part_2","frep.json")
-    key_dict_path=os.path.join(abs_path,"part_2","key.json")
-    output_file_path=os.path.join(abs_path,"part_2","decoded_text.txt")
-    path_dict = {
-        "input_file": input_file_path,
-        "freq_dict": freq_dict_path,
-        "key_dict": key_dict_path,
-        "output_file": output_file_path
-    }
-    try:
-        with open('part_2\path.json', 'w') as json_file:
-            json.dump(path_dict, json_file, indent=1)
-    except Exception as ex:
-        raise Exception(f"Error when write path into file!\n Exception:{ex}\n")
-
+    input_file_path, freq_dict_path, key_dict_path, output_file_path = path.path_settings()
     try:
         get_dict(input_file_path,freq_dict_path)
         decode_text(input_file_path,key_dict_path,output_file_path)
