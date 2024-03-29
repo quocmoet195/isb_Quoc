@@ -1,3 +1,6 @@
+
+import os
+import json
 from math import sqrt
 from scipy.special import erfc
 from scipy.special import gammaincc
@@ -13,9 +16,9 @@ def frequency_bit_test(bits:str)->float:
     bits_size=len(bits)
     count_one = bits.count('1')
     count_zero = bits.count('0')
-    total = count_one+count_zero*(-1)
+    total = count_one - count_zero
     S = total/sqrt(bits_size)
-    P = erfc(S/sqrt(2))
+    P = erfc(abs(S)/sqrt(2))
     print(P)
     if (P < 0.01):
         print("Failed test")
@@ -91,3 +94,8 @@ if __name__ == "__main__":
     P1 = frequency_bit_test(bits)
     P2 = consecutive_bits_test(bits)
     P3 = longest_sequence_of_ones_test(bits)
+
+    abs_path = os.path.abspath("")
+    output_path=os.path.join(abs_path,"result.json")
+    with open(output_path,"w") as file:
+        file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
