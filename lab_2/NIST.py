@@ -1,5 +1,3 @@
-
-import os
 import json
 from math import sqrt
 from scipy.special import erfc
@@ -88,11 +86,12 @@ def longest_sequence_of_ones_test(bits:str)->float:
         print( "Passed  test")
     return P
 
-def test(bits:str):
+def calculate(bits:str):
     P1 = frequency_bit_test(bits)
     P2 = consecutive_bits_test(bits)
     P3 = longest_sequence_of_ones_test(bits)
     return P1, P2, P3
+
 
 if __name__ == "__main__":
     try:
@@ -103,11 +102,11 @@ if __name__ == "__main__":
     bits_cpp=str(bits_dict['bits_cpp'])
     bits_java=str(bits_dict['bits_java'])
     output_path=bits_dict['output_path']
-    P1, P2, P3 = test(bits_cpp)
+    P1, P2, P3 = calculate(bits_cpp)
     with open(output_path,"w") as file:
         file.write('Test with the C++ random requense\n')
         file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
-    P1, P2, P3 = test(bits_java)
+    P1, P2, P3 = calculate(bits_java)
     with open(output_path,"a") as file:
         file.write('\n\nTest with the java random requense\n')
         file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
