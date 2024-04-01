@@ -1,6 +1,6 @@
 import json
 from read_and_write_file import read_from_file, write_to_file
-from part_2 import path
+from settings import path_settings
 
 def get_dict(input_path: str, output_path: str) -> None:
     """
@@ -53,7 +53,7 @@ def decode_text(original_text_path: str, key_path: str, decode_text_path: str) -
 
 
 if __name__ == "__main__":
-    input_file_path, freq_dict_path, key_dict_path, output_file_path = path.path_settings()
+    input_file_path, freq_dict_path, key_dict_path, output_file_path = path_settings('part_2\\settings.json')
     try:
         get_dict(input_file_path,freq_dict_path)
         decode_text(input_file_path,key_dict_path,output_file_path)

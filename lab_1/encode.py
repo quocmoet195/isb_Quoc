@@ -1,5 +1,5 @@
 from read_and_write_file import read_from_file, write_to_file
-from part_1 import path
+from settings import path_settings
 
 def encryption_text(input_path: str, output_path: str, step_path: str) -> None:
     """
@@ -28,7 +28,7 @@ def encryption_text(input_path: str, output_path: str, step_path: str) -> None:
 
 
 if __name__ == "__main__":
-    input_path, output_path, step_path, alphabet_path = path.path_settings()
+    input_path, output_path, step_path, alphabet_path = path_settings('part_1\\settings.json')
     ALPHABET=read_from_file(alphabet_path)
     try:
         encryption_text(input_path, output_path, step_path)

@@ -1,0 +1,6 @@
+{
+ "input_path": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_1\\original_text.txt",
+ "output_path": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_1\\encode_text.txt",
+ "step_path": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_1\\step.txt",
+ "alphabet_path": "D:\\Cem_4_Lab\\isb_Quoc\\lab_1\\part_1\\alphabet.txt"
+}
