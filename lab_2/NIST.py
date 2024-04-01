@@ -88,14 +88,26 @@ def longest_sequence_of_ones_test(bits:str)->float:
         print( "Passed  test")
     return P
 
-
-if __name__ == "__main__":
-    bits = '11001000001111111010100100100110101011101101101110100111111001000000000101000110110000001001011000111110001010110001111000101110'
+def test(bits:str):
     P1 = frequency_bit_test(bits)
     P2 = consecutive_bits_test(bits)
     P3 = longest_sequence_of_ones_test(bits)
+    return P1, P2, P3
 
-    abs_path = os.path.abspath("")
-    output_path=os.path.join(abs_path,"result.json")
+if __name__ == "__main__":
+    try:
+        with open('settings.json','r') as file:
+            bits_dict=json.load(file)
+    except Exception as ex:
+        raise Exception(f"Error when read bits!\n Exception{ex}")
+    bits_cpp=str(bits_dict['bits_cpp'])
+    bits_java=str(bits_dict['bits_java'])
+    output_path=bits_dict['output_path']
+    P1, P2, P3 = test(bits_cpp)
     with open(output_path,"w") as file:
+        file.write('Test with the C++ random requense\n')
+        file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
+    P1, P2, P3 = test(bits_java)
+    with open(output_path,"a") as file:
+        file.write('\n\nTest with the java random requense\n')
         file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
