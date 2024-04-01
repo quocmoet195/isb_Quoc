@@ -3,6 +3,8 @@ from math import sqrt
 from scipy.special import erfc
 from scipy.special import gammaincc
 
+pi = [0.2148, 0.3672, 0.2305, 0.1875]
+
 def frequency_bit_test(bits:str)->float:
     """
     Проверить сгенерированные последовательность с помощью частотного побитового теста
@@ -76,7 +78,6 @@ def longest_sequence_of_ones_test(bits:str)->float:
     v2 = max_list.count(2)
     v3 = max_list.count(3)
     v4 = 16-v1-v2-v3
-    pi = [0.2148, 0.3672, 0.2305, 0.1875]
     X = ((v1-N*pi[0])**2)/(N*pi[0]) + ((v2-N*pi[1])**2)/(N*pi[1]) + ((v3-N*pi[2])**2)/(N*pi[2]) + ((v4-N*pi[3])**2)/(N*pi[3])
     P=gammaincc(3/2,X/2)
     print(P)
