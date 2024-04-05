@@ -103,17 +103,17 @@ if __name__ == "__main__":
     bits_cpp=str(bits_dict['bits_cpp'])
     bits_java=str(bits_dict['bits_java'])
     output_path=bits_dict['output_path']
-    P1, P2, P3 = calculate(bits_cpp)
+    result_P1, result_P2, result_P3 = calculate(bits_cpp)
     try:
         with open(output_path,"w") as file:
             file.write('Test with the C++ random requense\n')
-            file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
+            file.write(json.dumps({"Frequency bit test":result_P1, "Consecutive bits test": result_P2, "Longest sequence of ones test": result_P3}, indent=1))
     except Exception as ex:
         raise Exception(f"Error when write into file!\n Exception{ex}")
-    P1, P2, P3 = calculate(bits_java)
+    result_P1, result_P2, result_P3 = calculate(bits_java)
     try:
         with open(output_path,"a") as file:
             file.write('\n\nTest with the java random requense\n')
-            file.write(json.dumps({"Frequency bit test":P1, "Consecutive bits test": P2, "Longest sequence of ones test": P3}, indent=1))
+            file.write(json.dumps({"Frequency bit test":result_P1, "Consecutive bits test": result_P2, "Longest sequence of ones test": result_P3}, indent=1))
     except Exception as ex:
         raise Exception(f"Error when write into file!\n Exception{ex}")
