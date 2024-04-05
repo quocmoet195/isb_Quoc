@@ -26,6 +26,7 @@ def frequency_bit_test(bits:str)->float:
         print( "Passed test")
     return P
 
+
 def consecutive_bits_test(bits:str)->float:
     """
     Проверить сгенерированные последовательность с помощью одинаковых подряда идущие биты.    
@@ -51,6 +52,7 @@ def consecutive_bits_test(bits:str)->float:
     else:
         print( "Passed  test")
     return P
+
 
 def longest_sequence_of_ones_test(bits:str)->float:
     """
@@ -86,6 +88,7 @@ def longest_sequence_of_ones_test(bits:str)->float:
     else:
         print( "Passed  test")
     return P
+
 
 def calculate(bits:str):
     P1 = frequency_bit_test(bits)
