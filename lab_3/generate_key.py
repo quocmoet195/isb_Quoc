@@ -1,6 +1,6 @@
 import os
 from cryptography.hazmat.primitives import hashes, padding, serialization
-from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
 def generate_key_pair(private_key_path: str,  public_key_path: str, symmetric_key_path: str) -> None:
     """Эта функция генерирует пару ключей(ассиметричный и симметричный) гибридной системы, а после сохраняет их в файлы.
