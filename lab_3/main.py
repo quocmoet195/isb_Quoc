@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 from generate_key import generate_key_pair
-
+from encrypt import encrypt_data
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -21,5 +21,7 @@ if __name__ == "__main__":
     try:
         if args.generation:
             generate_key_pair(settings['private_key'], settings['public_key'], settings['symmetric_key'])
+        if args.encryption:
+            encrypt_data(settings['initial_file'], settings['private_key'], settings['symmetric_key'], settings['encrypted_file'])
     except Exception as ex:
         raise Exception(f"Error: {ex}")
