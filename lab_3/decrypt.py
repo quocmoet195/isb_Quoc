@@ -6,8 +6,14 @@ from cryptography.hazmat.primitives.asymmetric import padding as asymmetric_padd
 from cryptography.hazmat.backends import default_backend
 
 
-def decrypt_data(encrypted_file_path: str, private_key_path: str, encrypted_symmetric_key_path: str,
-                 decrypted_file_path: str) -> None:
+def decrypt_data(encrypted_file_path: str, private_key_path: str, encrypted_symmetric_key_path: str,decrypted_file_path: str) -> None:
+    """Эта функция дешифрует данные используя симметричный и ассиметричные ключи, а так же сохраняет результат по указоному пути
+    Args:
+        encrypted_file_path (str): путь до зашифрованных данных
+        private_key_path (str): путь до секретного ключа
+        encrypted_symmetric_key_path (str): путь до зашифрованного симметричного ключа
+        decrypted_file_path (str): путь куда дешифруются данные
+    """
     try:
         with open(encrypted_symmetric_key_path, "rb") as f1, open(private_key_path, "rb") as f2:
             encrypted_symmetric_key = f1.read()

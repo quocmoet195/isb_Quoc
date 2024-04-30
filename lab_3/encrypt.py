@@ -8,6 +8,13 @@ import os
 
 
 def encrypt_data(initial_file_path: str, private_key_path: str, encrypted_symmetric_key_path: str, encrypted_file_path: str) -> None:
+    """Эта функция шифрует данные используя симметричный и ассиметричные ключи, а так же сохраняет результат по указыному пути
+    Args:
+        initial_file_path (str): путь до шифруемых данных
+        private_key_path (str): путь до приватного ключа
+        encrypted_symmetric_key_path (str): путь до зашифрованного симметричного ключа
+        encrypted_file_path (str): путь куда шифруются данных
+    """
     try:
         with open(private_key_path, "rb") as private_key_file:
             private_key = serialization.load_pem_private_key(

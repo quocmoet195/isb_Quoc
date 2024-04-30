@@ -2,6 +2,7 @@ import os
 from cryptography.hazmat.primitives import hashes, padding, serialization
 from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
+
 def generate_key_pair(private_key_path: str,  public_key_path: str, symmetric_key_path: str) -> None:
     """Эта функция генерирует пару ключей(ассиметричный и симметричный) гибридной системы, а после сохраняет их в файлы.
     Args:
@@ -25,8 +26,9 @@ def generate_key_pair(private_key_path: str,  public_key_path: str, symmetric_ke
     except Exception as ex:
         raise Exception(f"{ex} not found")
     #Зашифрование ключа симметричного шифрования открытым ключом
-    ciphertext = public_key.encrypt(symmetric_key, padding.OAEP(mgf=padding.MGF1(
-        algorithm=hashes.SHA256()), algorithm=hashes.SHA256(), label=None))
+    ciphertext = public_key.encrypt(symmetric_key, 
+                                    padding.OAEP(mgf=padding.MGF1(algorithm=hashes.SHA256()), 
+                                                 algorithm=hashes.SHA256(), label=None))
     try:
         with open(symmetric_key_path, "wb") as f:
             f.write(ciphertext)
