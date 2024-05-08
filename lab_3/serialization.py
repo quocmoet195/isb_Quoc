@@ -22,3 +22,16 @@ def serialize_public_key(public_key):
     except Exception as ex:
         raise Exception(f"ERROR!!{ex}")
 
+  
+def load_private_key(private_key_bytes):
+    try:
+        return serialization.load_pem_private_key(private_key_bytes, password=None, backend=default_backend())
+    except Exception as ex:
+        raise Exception(f"ERROR!!{ex}")
+
+
+def load_public_key(public_key_bytes):
+    try:
+        return serialization.load_pem_public_key(public_key_bytes)
+    except Exception as ex:
+        raise Exception(f"ERROR!!{ex}")
