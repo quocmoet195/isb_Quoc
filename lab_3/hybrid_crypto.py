@@ -37,3 +37,21 @@ def encrypt_file(initial_file_path, private_key_path, symmetric_key_path, encryp
             f_out.write(ciphertext)
     except Exception as ex:
         raise Exception(f"ERROR!!{ex}")
+
+
+def decrypt_file(encrypted_file_path, private_key_path, symmetric_key_path, decrypted_file_path):
+    try:
+        private_key_bytes = open(private_key_path, "rb").read()
+        private_key = load_private_key(private_key_bytes)
+        encrypted_symmetric_key = open(symmetric_key_path, "rb").read()
+        symmetric_key = decrypt_symmetric_key(private_key, encrypted_symmetric_key)
+        with open(encrypted_file_path, "rb") as f_in, open(decrypted_file_path, "wb") as f_out:
+            iv = f_in.read(16)
+            cipher = Cipher(algorithms.ChaCha20(symmetric_key, iv), mode=None)
+            decryptor = cipher.decryptor()
+            while chunk := f_in.read(128):
+                decrypted_chunk = decryptor.update(chunk)
+                f_out.write(decrypted_chunk)
+            f_out.write(decryptor.finalize())
+    except Exception as ex:
+        raise Exception(f"ERROR!!{ex}")
