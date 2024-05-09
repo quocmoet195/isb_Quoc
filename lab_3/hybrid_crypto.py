@@ -9,6 +9,13 @@ from serialization import serialize_private_key, serialize_public_key, load_priv
 
 
 def generate_keys(private_key_path, public_key_path, symmetric_key_path):
+    """
+    Generates key pairs for asymmetric encryption and a symmetric key for hybrid encryption.
+    Args:
+        private_key_path (str): The path to save the private key.
+        public_key_path (str): The path to save the public key.
+        symmetric_key_path (str): The path to save the symmetric key.
+    """
     try:
         private_key = generate_key_pair()
         public_key = private_key.public_key()
@@ -24,6 +31,14 @@ def generate_keys(private_key_path, public_key_path, symmetric_key_path):
 
 
 def encrypt_file(initial_file_path, private_key_path, symmetric_key_path, encrypted_file_path):
+    """
+    Encrypts a file using hybrid encryption.
+    Args:
+        initial_file_path (str): The path to the file to be encrypted.
+        private_key_path (str): The path to the private key.
+        symmetric_key_path (str): The path to the symmetric key.
+        encrypted_file_path (str): The path to save the encrypted file.
+    """
     try:
         private_key_bytes = open(private_key_path, "rb").read()
         private_key = load_private_key(private_key_bytes)
@@ -40,6 +55,14 @@ def encrypt_file(initial_file_path, private_key_path, symmetric_key_path, encryp
 
 
 def decrypt_file(encrypted_file_path, private_key_path, symmetric_key_path, decrypted_file_path):
+    """
+    Decrypts a file encrypted using hybrid encryption.
+    Args:
+        encrypted_file_path (str): The path to the encrypted file.
+        private_key_path (str): The path to the private key.
+        symmetric_key_path (str): The path to the symmetric key.
+        decrypted_file_path (str): The path to save the decrypted file.
+    """
     try:
         private_key_bytes = open(private_key_path, "rb").read()
         private_key = load_private_key(private_key_bytes)
