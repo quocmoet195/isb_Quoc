@@ -21,3 +21,19 @@ def generate_keys(private_key_path, public_key_path, symmetric_key_path):
             f.write(symmetric_key)
     except Exception as ex:
         raise Exception(f"ERROR!!{ex}")
+
+
+def encrypt_file(initial_file_path, private_key_path, symmetric_key_path, encrypted_file_path):
+    try:
+        private_key_bytes = open(private_key_path, "rb").read()
+        private_key = load_private_key(private_key_bytes)
+        symmetric_key = open(symmetric_key_path, "rb").read()
+        encrypted_symmetric_key = encrypt_symmetric_key(private_key, symmetric_key)
+        with open(symmetric_key_path, "wb") as f:
+            f.write(encrypted_symmetric_key)
+        with open(initial_file_path, "rb") as f_in, open(encrypted_file_path, "wb") as f_out:
+            plaintext = f_in.read()
+            ciphertext = encrypt_data(symmetric_key, plaintext)
+            f_out.write(ciphertext)
+    except Exception as ex:
+        raise Exception(f"ERROR!!{ex}")
