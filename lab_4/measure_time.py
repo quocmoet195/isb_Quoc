@@ -55,3 +55,17 @@ def measure_time(hash_number: str, bins: list, last_four_numbers: str, csv_file:
         t2 = time.time()
         write_statistics(i, t2 - t1, csv_file)
     print("Статистика успешно посчитана")
+
+def mark_global_point(statistics: dict, file_name: str) -> None:
+    """
+    Функция на графике отметить точку глобального минимума полученной зависимости
+    statistics: Статистика
+    file_name: Путь к файлу
+    """
+    x = statistics.keys()
+    y = statistics.values()
+    plt.ylabel('time')
+    plt.xlabel('processes')
+    plt.title('y=sinc(x)')
+    plt.plot(x,y, color='navy', linestyle = '--', marker='x', linewidth=1, markersize=4 )
+    plt.savefig(file_name)
