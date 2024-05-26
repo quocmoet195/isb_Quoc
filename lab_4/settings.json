@@ -102,5 +102,8 @@
     427977,
     427999
   ],
-  "last_four_numbers": "0877"
+  "last_four_numbers": "0877",
+  "card_number": "card_number.txt",
+  "csv_statistics": "statistics.csv",
+  "png_statistics": "statistics.png"
 }
