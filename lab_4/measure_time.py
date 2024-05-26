@@ -44,7 +44,7 @@ def write_statistics(processes: int, time: float, file_name: str) -> None:
     except Exception as ex:
         raise Exception(f"Не удалось записать статистику: {ex}")
 
-def measure_time(hash_number: str, bins: list, last_four_numbers: str, csv_file: str) ->None:
+def measure_time(hash_number: str, bins: list, last_four_numbers: str, file_statistic: str) ->None:
     """
     Замерить время для поиска коллизии хеша при различном числе процессов
 
@@ -53,7 +53,7 @@ def measure_time(hash_number: str, bins: list, last_four_numbers: str, csv_file:
         t1 = time.time()
         create_card_number(hash_number, bins, last_four_numbers, i)
         t2 = time.time()
-        write_statistics(i, t2 - t1, csv_file)
+        write_statistics(i, t2 - t1, file_statistic)
     print("Статистика успешно посчитана")
 
 def mark_global_point(statistics: dict, file_name: str) -> None:
