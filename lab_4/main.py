@@ -1,5 +1,6 @@
 import json
 import argparse
+
 from card import create_card_number
 from measure_time import mark_global_point , load_statistics, measure_time
 from luhn import Luhn
