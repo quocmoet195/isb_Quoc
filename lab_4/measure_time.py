@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 from card import create_card_number
 
 
-def load_statistics(file_name: str) -> dict:
+def read_statistics(file_name: str) -> dict:
     """
     Функция считывает статистику из файла
     file_name: Имя файла для чтения данных
@@ -25,7 +25,7 @@ def load_statistics(file_name: str) -> dict:
         result[int(processes)] = float(time)
     return result
 
-def write_statistics(processes: int, time: float, file_name: str) -> None:
+def write_statistics(data, file_name: str) -> None:
     """
     Записывает статистику в файл JSON.
     processes: Количество используемых процессов
@@ -33,14 +33,8 @@ def write_statistics(processes: int, time: float, file_name: str) -> None:
     file_name: Имя файла для записи данных
     """
     try:
-        if os.path.exists(file_name) and os.path.getsize(file_name) > 0:
-            with open(file_name, 'r') as f:
-                stats = json.load(f)
-        else:
-            stats = {}
-        stats[processes] = time
         with open(file_name, 'w') as f:
-            json.dump(stats, f)
+            json.dump(data, f)
     except Exception as ex:
         raise Exception(f"Не удалось записать статистику: {ex}")
 
@@ -49,11 +43,13 @@ def measure_time(hash_number: str, bins: list, last_four_numbers: str, file_stat
     Замерить время для поиска коллизии хеша при различном числе процессов
 
     """
+    time_dict={}
     for i in range(1, 11):
-        t1 = time.time()
+        time_begin = time.time()
         create_card_number(hash_number, bins, last_four_numbers, i)
-        t2 = time.time()
-        write_statistics(i, t2 - t1, file_statistic)
+        time_end = time.time()
+        time_dict[i]=time_end-time_begin
+    write_statistics(time_dict, file_statistic)
     print("Статистика успешно посчитана")
 
 def mark_global_point(statistics: dict, file_name: str) -> None:

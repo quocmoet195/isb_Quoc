@@ -1,4 +1,4 @@
-def Luhn(card_number: str) -> bool:
+def Luna(card_number: str) -> bool:
     """
     Проверка валидности номера карты с помощью алгоритма Луна
     card_number: Номер карты
