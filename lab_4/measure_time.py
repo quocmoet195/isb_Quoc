@@ -25,6 +25,7 @@ def read_statistics(file_name: str) -> dict:
         result[int(processes)] = float(time)
     return result
 
+
 def write_statistics(data, file_name: str) -> None:
     """
     Записывает статистику в файл JSON.
@@ -37,6 +38,7 @@ def write_statistics(data, file_name: str) -> None:
             json.dump(data, f)
     except Exception as ex:
         raise Exception(f"Не удалось записать статистику: {ex}")
+
 
 def measure_time(hash_number: str, bins: list, last_four_numbers: str, file_statistic: str) ->None:
     """
@@ -51,6 +53,7 @@ def measure_time(hash_number: str, bins: list, last_four_numbers: str, file_stat
         time_dict[i]=time_end-time_begin
     write_statistics(time_dict, file_statistic)
     print("Статистика успешно посчитана")
+
 
 def mark_global_point(statistics: dict, file_name: str) -> None:
     """

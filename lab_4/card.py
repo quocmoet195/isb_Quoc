@@ -15,6 +15,7 @@ def check_card_number(args) -> str:
             return card_number 
     return None
 
+
 def create_card_number(original_hash: str, bins: list, last_four_numbers: str, core_number: int = mp.cpu_count()) -> str:
     """
     Генерирует номер карты путем сравнения хешей.    original_hash: Original hash of the card
