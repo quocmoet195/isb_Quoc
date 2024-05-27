@@ -25,21 +25,24 @@ if __name__ == "__main__":
     card_file=settings['card_number']
     file_statistic=settings['file_statistics']
     png_file=settings['image_statistics']
-    if args.card_number_enumeration:
-        card_number = create_card_number(hash_number, bins, last_four_numbers, 6)
-        if card_number:
-            with open(card_file, 'w') as f:
-                f.write(card_number)
-        else:
-            print("Не удалось найти номер карты")
-    elif args.statistics:
-        measure_time(hash_number, bins, last_four_numbers, file_statistic)
-    elif args.luna_algorithm:
-        with open(card_file, 'r') as f:
-            card_number = f.read()
-        if Luna(card_number):
-            print("Номер карты действителен")
-        else:
-            print("Номер карты не действителен")
-    elif args.visualize_statistics:
-        mark_global_point(read_statistics(file_statistic), png_file)
+    match (args.card_number_enumeration, args.statistics, args.luna_algorithm, args.visualize_statistics):
+        case (True, False, False, False):
+            card_number = create_card_number(hash_number, bins, last_four_numbers, 6)
+            if card_number:
+                with open(card_file, 'w') as f:
+                    f.write(card_number)
+            else:
+                print("Не удалось найти номер карты")
+        case (False, True, False, False):
+            measure_time(hash_number, bins, last_four_numbers, file_statistic)
+        case (False, False, True, False):
+            with open(card_file, 'r') as f:
+                card_number = f.read()
+            if Luna(card_number):
+                print("Номер карты действителен")
+            else:
+                print("Номер карты не действителен")
+        case (False, False, False, True):
+            mark_global_point(read_statistics(file_statistic), png_file)
+        case _:
+            print("Неизвестная команда")
